@@ -1,0 +1,86 @@
+{
+	"i18n": true,
+	"type": "panel",
+	"items": {
+		"update_interval": {
+			"type": "number",
+			"label": "update_interval",
+			"newLine": true
+		},
+		"federal_states": {
+			"type": "select",
+			"label": "federal_states",
+			"options": [
+				{
+					"label": "Alle",
+					"value": "Alle"
+				},
+				{
+					"label": "Baden-Württemberg",
+					"value": "Baden-Württemberg"
+				},
+				{
+					"label": "Bayern",
+					"value": "Bayern"
+				},
+				{
+					"label": "Berlin",
+					"value": "Berlin"
+				},
+				{
+					"label": "Brandenburg",
+					"value": "Brandenburg"
+				},
+				{
+					"label": "Bremen",
+					"value": "Bremen"
+				},
+				{
+					"label": "Hamburg",
+					"value": "Hamburg"
+				},
+				{
+					"label": "Hessen",
+					"value": "Hessen"
+				},
+				{
+					"label": "Mecklenburg-Vorpommern",
+					"value": "Mecklenburg-Vorpommern"
+				},
+				{
+					"label": "Niedersachsen",
+					"value": "Niedersachsen"
+				},
+				{
+					"label": "Nordrhein-Westfalen",
+					"value": "Nordrhein-Westfalen"
+				},
+				{
+					"label": "Rheinland-Pfalz",
+					"value": "Rheinland-Pfalz"
+				},
+				{
+					"label": "Saarland",
+					"value": "Saarland"
+				},
+				{
+					"label": "Sachsen",
+					"value": "Sachsen"
+				},
+				{
+					"label": "Sachsen-Anhalt",
+					"value": "Sachsen-Anhalt"
+				},
+				{
+					"label": "Schleswig-Holstein",
+					"value": "Schleswig-Holstein"
+				},
+				{
+					"label": "Thüringen",
+					"value": "Thüringen"
+				}
+			],
+			"newLine": true
+		}
+	}
+}
