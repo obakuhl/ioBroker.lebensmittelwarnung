@@ -9,7 +9,7 @@ const parseString = require('xml2js').parseString;
  */
 let adapter;
 
-
+const objectsInitialized = {};
 
 let foodJSONDP = '0_userdata.0.Lebensmittel.Warnung.json'
 let foodHTMLDP = '0_userdata.0.Lebensmittel.Warnung.html'
@@ -19,30 +19,6 @@ let contact = 'https://www.lebensmittelwarnung.de/DE/Service/Kontakt/kontakt_nod
 let foodWarningRSS =  'https://www.lebensmittelwarnung.de/___LMW-Redaktion/RSSNewsfeed/Functions/RssFeeds/rssnewsfeed_Alle_DE.xml'
 // 'https://www.lebensmittelwarnung.de/bvl-lmw-de/opensaga/feed/alle/alle_bundeslaender.rss'
 let maxEntries = 20;
-
-
-createStateAsync(foodJSONDP, {read: true, write: true, name: 'Lebensmittel-Warnungen JSON' , type: "string", role: "text", def: JSON.stringify([]) }); 
-createStateAsync(foodHTMLDP, {read: true, write: true, name: 'Lebensmittel-Warnungen HTML' , type: "string", role: "text", def: "" }); 
-createStateAsync(selectedCountryDP, {read: true, write: true, name: 'Gewähltes Land' , type: "string", role: "text", def: "", states: {
-    '': 'bitte auswählen',
-    'Baden-Würtemberg':'Baden-Würtemberg',
-    'Bayern':'Bayern',
-    'Berlin':'Berlin',
-    'Brandenburg':'Brandenburg',
-    'Bremen':'Bremen',
-    'Hamburg':'Hamburg',
-    'Hessen':'Hessen',
-    'Mecklenburg-Vorpommern':'Mecklenburg-Vorpommern',
-    'Niedersachsen': 'Niedersachsen',
-    'Nordrhein-Westfalen':'Nordrhein-Westfalen',
-    'Rheinland-Pfalz':'Rheinland-Pfalz',
-    'Saarland':'Saarland',
-    'Sachsen':'Sachsen',
-    'Sachsen-Anhalt':'Sachsen-Anhalt',
-    'Schleswig-Holstein': 'Schleswig-Holstein',
-    'Thüringen': 'Thüringen'
-
-}}); 
 
 /**
  * Starts the adapter instance
@@ -273,7 +249,39 @@ function getData(){
             log(error, 'error');
         }
     });   // Ende request 
+}
 
+async function handleRequest() {
+    // create states
+    if (!objectsInitialized[warnings]) {
+	await createObjects();
+	objectsInitialized[warnings] = true;
+    }
+}
+
+async function createObjects() {
+    // create all Objects
+    adapter.log.debug(`Creating objects`);
+    await adapter.extendObjectAsync(user, {
+	type: 'state',
+	common: {name: 'warnings', role: 'state', type: 'boolean'}, //why boolean, it is a folder
+	native: {name: 'warnings'}
+    });
+
+    let obj = {
+        type: 'string',
+        common: {name: 'Lebensmittel-Warnungen JSON', read: true, write: false, role: 'text', type: 'string'},
+        native: {name: 'Lebensmittel-Warnungen JSON'}
+    };
+    await adapter.extendObjectAsync(`foodJSONDP`, obj);
+    obj = {
+        type: 'string',
+        common: {name: 'Lebensmittel-Warnungen HTML', read: true, write: false, role: 'text', type: 'string'},
+        native: {name: 'Lebensmittel-Warnungen HTML'}
+    };
+    await adapter.extendObjectAsync(`foodHTMLDP`, obj);	
+
+//createStateAsync(selectedCountryDP, {read: true, write: true, name: 'Gewähltes Land' , type: "string", role: "text", def: "", states: {}}); 
 
 }
 
