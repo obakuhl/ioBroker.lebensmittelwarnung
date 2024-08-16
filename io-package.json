@@ -1,0 +1,109 @@
+{
+	"common": {
+		"name": "lebensmittelwarnung",
+		"version": "0.0.1",
+		"news": {
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"zh-cn": "首次出版"
+			}
+		},
+		"title": "Produkt- und Lebensmittelwarnung",
+		"titleLang": {
+			"en": "Product and Food alert",
+			"de": "Produkt- und Lebensmittelwarnung",
+			"ru": "Предупреждение о продуктах и продуктах питания",
+			"pt": "Alerta de produtos e alimentos",
+			"nl": "Alert op producten en levensmiddelen",
+			"fr": "Alerte produits et aliments",
+			"it": "Avviso di prodotto e cibo",
+			"es": "Alerta de productos y alimentos",
+			"pl": "Alert na produkt i żywność",
+			"uk": "Продукт і харчова оповіщення",
+			"zh-cn": "产品和食品警报"
+		},
+		"desc": {
+			"en": "Provides product and food alerts from the Federal Ministry of Consumer Protection",
+			"de": "Stellt Produkt- und Lebensmittelwarnungen des Bundesministeriums für Verbraucherschutz zu Verfügung",
+			"ru": "Предоставление продуктовых и пищевых предупреждений от Федерального министерства защиты потребителей",
+			"pt": "Fornece alertas de produtos e alimentos do Ministério Federal de Proteção ao Consumidor",
+			"nl": "Geeft product- en voedselwaarschuwingen van het federale ministerie van consumentenbescherming",
+			"fr": "Fournit des alertes sur les produits et les aliments du Ministère fédéral de la protection des consommateurs",
+			"it": "Fornisce avvisi di prodotto e di cibo dal Ministero federale della protezione dei consumatori",
+			"es": "Proporciona alertas de productos y alimentos del Ministerio Federal de Protección al Consumidor",
+			"pl": "Zapewnia ostrzeżenia o produktach i żywności od Federalnego Ministerstwa Ochrony Konsumentów",
+			"uk": "Забезпечує продуктові та харчові оповіщення від Федерального міністерства захисту споживачів",
+			"zh-cn": "提供联邦消费者保护部的产品和食品警报"
+		},
+		"authors": [
+			"obakuhl <hello@obakuhl.com>"
+		],
+		"keywords": [
+			"lebensmittel",
+			"food",
+			"warning"
+		],
+		"license": "MIT",
+		"platform": "Javascript/Node.js",
+		"main": "main.js",
+		"icon": "lebensmittelwarnung.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/obakuhl/ioBroker.lebensmittelwarnung/main/admin/lebensmittelwarnung.png",
+		"readme": "https://github.com/obakuhl/ioBroker.lebensmittelwarnung/blob/main/README.md",
+		"loglevel": "info",
+		"mode": "daemon",
+		"type": "misc-data",
+		"compact": true,
+		"connectionType": "cloud",
+		"dataSource": "poll",
+		"adminUI": {
+			"config": "json"
+		},
+		"dependencies": [
+			{
+				"js-controller": ">=5.0.19"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=6.13.16"
+			}
+		]
+	},
+	"native": {
+		"update_interval": "60",
+		"federal_states": "all"
+	},
+	"objects": [],
+	"instanceObjects": [
+		{
+		  "_id": "info",
+		  "type": "channel",
+		  "common": {
+			"name": "Information"
+		  },
+		  "native": {}
+		},
+		{
+		  "_id": "info.connection",
+		  "type": "state",
+		  "common": {
+			"role": "indicator.connected",
+			"name": "Server Adapter is ready to get data",
+			"type": "boolean",
+			"read": true,
+			"write": false,
+			"def": false
+		  },
+		  "native": {}
+		}
+	]
+}
