@@ -15,31 +15,7 @@ let adapter;
  */
 function startAdapter(options) {
 	// Create the adapter and define its methods
-	return adapter = utils.adapter(Object.assign({}, options, {
-		name: 'lebensmittelwarnung',
-
-		// The ready callback is called when databases are connected and adapter received configuration.
-		// start here!
-		ready: main, // Main method defined below for readability
-
-
-		// If you need to accept messages in your adapter, uncomment the following block.
-		// /**
-		//  * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
-		//  * Using this method requires "common.messagebox" property to be set to true in io-package.json
-		//  */
-		// message: (obj) => {
-		// 	if (typeof obj === 'object' && obj.message) {
-		// 		if (obj.command === 'send') {
-		// 			// e.g. send email or pushover or whatever
-		// 			adapter.log.info('send command');
-
-		// 			// Send response in callback if required
-		// 			if (obj.callback) adapter.sendTo(obj.from, obj.command, 'Message received', obj.callback);
-		// 		}
-		// 	}
-		// },
-	}));
+	return adapter;
 }
 
 async function main() {
