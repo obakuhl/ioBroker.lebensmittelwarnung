@@ -15,10 +15,10 @@ let adapter;
  */
 function startAdapter(options) {
 	// Create the adapter and define its methods
-	return adapter;
-}
+	main();
+	}
 
-async function main() {
+function main() {
 
 	// The adapters config (in the instance object everything under the attribute "native") is accessible via
 	// adapter.config:
