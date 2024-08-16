@@ -29,7 +29,7 @@ function startAdapter(options) {
 }
 
 function main() {
-	adapter.setState('info.connection', false, true);
+	/*adapter.setState('info.connection', false, true);
 	
 	(async() => {
         try {
@@ -43,7 +43,7 @@ function main() {
 	
 	getData();
 
-	/*if(existsState(foodJSONDP)){
+	if(existsState(foodJSONDP)){
 	    getData()
 	} else{
 	    setTimeout(function(){
