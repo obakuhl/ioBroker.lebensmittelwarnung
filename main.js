@@ -25,20 +25,20 @@ let maxEntries = 20;
  * @param {Partial<utils.AdapterOptions>} [options]
  */
 function startAdapter(options) {
-	
+	    return adapter;
 }
 
 function main() {
 	adapter.setState('info.connection', false, true);
 	
 	(async() => {
-            try {
-		adapter.log.debug(`hello`);		
-		await handleRequest();
-            } catch (err) {
-		adapter.log.info(`Could not process request: ${err}`);
-		return;
-            }
+        try {
+			adapter.log.debug(`hello`);		
+			await handleRequest();
+        } catch (err) {
+			adapter.log.info(`Could not process request: ${err}`);
+			return;
+        }
 	})();
 	
 	getData();
