@@ -11,9 +11,9 @@ let adapter;
 
 const objectsInitialized = {};
 
-let foodJSONDP = '0_userdata.0.Lebensmittel.Warnung.json'
-let foodHTMLDP = '0_userdata.0.Lebensmittel.Warnung.html'
-let selectedCountryDP = '0_userdata.0.Lebensmittel.Warnung.country'
+//let foodJSONDP = '0_userdata.0.Lebensmittel.Warnung.json'
+//let foodHTMLDP = '0_userdata.0.Lebensmittel.Warnung.html'
+//let selectedCountryDP = '0_userdata.0.Lebensmittel.Warnung.country'
 
 let contact = 'https://www.lebensmittelwarnung.de/DE/Service/Kontakt/kontakt_node.html'
 let foodWarningRSS =  'https://www.lebensmittelwarnung.de/___LMW-Redaktion/RSSNewsfeed/Functions/RssFeeds/rssnewsfeed_Alle_DE.xml'
@@ -30,8 +30,20 @@ function startAdapter(options) {
 
 function main() {
 	adapter.setState('info.connection', false, true);
+	
+	(async() => {
+            try {
+		adapter.log.debug(`hello`);		
+		await handleRequest();
+            } catch (err) {
+		adapter.log.info(`Could not process request: ${err}`);
+		return;
+            }
+	})();
+	
+	getData():
 
-	if(existsState(foodJSONDP)){
+	/*if(existsState(foodJSONDP)){
 	    getData()
 	} else{
 	    setTimeout(function(){
@@ -39,7 +51,7 @@ function main() {
 	    },3000);
 	}
 
-	schedule('*/30 * * * *', () => {
+	schedule('* /30 * * * *', () => {		// * und / ohne Leerzeichen
 	    getData();
 	});
 	
@@ -50,7 +62,7 @@ function main() {
 	on({id: foodJSONDP, change: "any"}, function (obj) {
 	    let value = obj.state.val;
 	    setHTML(value)
-	});
+	});*/
 
 }
 
