@@ -22,43 +22,6 @@ function startAdapter(options) {
 		// start here!
 		ready: main, // Main method defined below for readability
 
-		// is called when adapter shuts down - callback has to be called under any circumstances!
-		unload: (callback) => {
-			try {
-				// Here you must clear all timeouts or intervals that may still be active
-				// clearTimeout(timeout1);
-				// clearTimeout(timeout2);
-				// ...
-				// clearInterval(interval1);
-
-				callback();
-			} catch (e) {
-				callback();
-			}
-		},
-
-		// If you need to react to object changes, uncomment the following method.
-		// You also need to subscribe to the objects with `adapter.subscribeObjects`, similar to `adapter.subscribeStates`.
-		// objectChange: (id, obj) => {
-		// 	if (obj) {
-		// 		// The object was changed
-		// 		adapter.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-		// 	} else {
-		// 		// The object was deleted
-		// 		adapter.log.info(`object ${id} deleted`);
-		// 	}
-		// },
-
-		// is called if a subscribed state changes
-		stateChange: (id, state) => {
-			if (state) {
-				// The state was changed
-				adapter.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-			} else {
-				// The state was deleted
-				adapter.log.info(`state ${id} deleted`);
-			}
-		},
 
 		// If you need to accept messages in your adapter, uncomment the following block.
 		// /**
