@@ -41,7 +41,7 @@ function main() {
             }
 	})();
 	
-	getData():
+	getData();
 
 	/*if(existsState(foodJSONDP)){
 	    getData()
