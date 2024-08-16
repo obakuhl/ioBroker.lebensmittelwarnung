@@ -22,8 +22,7 @@ function main() {
 
 	// The adapters config (in the instance object everything under the attribute "native") is accessible via
 	// adapter.config:
-	adapter.log.info('config update_interval: ' + adapter.config.update_interval);
-	adapter.log.info('config states: ' + adapter.config.states);
+	adapter.log.info('hello');
 		adapter.setState('info.connection', false, true);
 
 
