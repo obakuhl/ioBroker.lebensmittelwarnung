@@ -29,8 +29,8 @@ function startAdapter(options) {
 }
 
 function main() {
-	/*adapter.setState('info.connection', false, true);
-	
+	adapter.setState('info.connection', false, true);
+	/*
 	(async() => {
         try {
 			adapter.log.debug(`hello`);		
@@ -66,7 +66,7 @@ function main() {
 
 }
 
-function setHTML(data){
+async function setHTML(data){
     let html = ''
     let items = JSON.parse(data)
     html += '<html><table style="width:100%; overflow:scroll;border-collapse: collapse; border: 2px solid black;">'
@@ -106,7 +106,7 @@ function setHTML(data){
     setState(foodHTMLDP,html)
 }
 
-function getData(){
+async function getData(){
     //let parseString = require('xml2js').parseString;
     let jsonCount = 0;    
     httpGet(foodWarningRSS, function (error, response) {
