@@ -25,6 +25,7 @@ let maxEntries = 20;
  * @param {Partial<utils.AdapterOptions>} [options]
  */
 function startAdapter(options) {
+	    options = options || {};
 	    adapter = new utils.Adapter(options);
 	    return adapter;
 }
