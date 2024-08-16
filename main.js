@@ -123,15 +123,6 @@ async function main() {
 
 	// same thing, but the state is deleted after 30s (getState will return null afterwards)
 	await adapter.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
-
-	// examples for the checkPassword/checkGroup functions
-	adapter.checkPassword('admin', 'iobroker', (res) => {
-		adapter.log.info('check user admin pw iobroker: ' + res);
-	});
-
-	adapter.checkGroup('admin', 'admin', (res) => {
-		adapter.log.info('check group user admin group admin: ' + res);
-	});
 }
 
 // If started as allInOne/compact mode => return function to create instance
