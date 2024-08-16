@@ -225,7 +225,7 @@ function getData(){
                             end = item.indexOf('</p>',first+3)
                             itemObj.distribution2 = item.substring(first, end);
                             */
-                            let selectedCountry = getState(selectedCountryDP).val;
+                            let selectedCountry = adapter.config.federal_states;
 
                             if(selectedCountry == '' || (selectedCountry != '' && result.includes(selectedCountry))) {
                                 jsonWarning.push(itemObj)
