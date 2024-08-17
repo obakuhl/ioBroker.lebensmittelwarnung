@@ -74,7 +74,7 @@ function main() {
 
 	schedule('* /30 * * * *', () => { // * und / ohne leerzeichen
 	    getData();
-	});*/
+	});
 	
 	on({id: selectedCountryDP, change: "any"}, function (obj) {
 	    let value = obj.state.val;
@@ -83,7 +83,7 @@ function main() {
 	on({id: foodJSONDP, change: "any"}, function (obj) {
 	    let value = obj.state.val;
 	    setHTML(value)
-	});
+	});*/
 	
 
 }
