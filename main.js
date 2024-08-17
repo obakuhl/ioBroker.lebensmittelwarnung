@@ -2,8 +2,11 @@
 
 const utils = require('@iobroker/adapter-core'); // Get common adapter utils
 const adapterName = require('./package.json').name.split('.').pop();
-const httpGet     = require('./lib/rest-api.js');
 const parseString = require('xml2js').parseString;
+//var parser = new xml2js.Parser();
+const https = require('https');
+const fs = require('fs');
+const eyes = require('eyes');
 
 /**
  * The adapter instance
@@ -81,6 +84,7 @@ function main() {
 	    let value = obj.state.val;
 	    setHTML(value)
 	});
+	
 
 }
 
@@ -127,7 +131,7 @@ function setHTML(data){
 function getData(){
     //let parseString = require('xml2js').parseString;
     let jsonCount = 0;    
-    httpGet(foodWarningRSS, function (error, response) {
+    https.get(foodWarningRSS, function (error, response) {
         if (!error && response.statusCode == 200) {
     
             parseString(response.data, {
@@ -135,15 +139,15 @@ function getData(){
                 mergeAttrs: true
             },
             function (err, result) {
-                //log(JSON.stringify(result, null, 2));
+                adapter.log.debug(JSON.stringify(result, null, 2));
 
                 if (err) {
-                    log("Fehler: " + err, 'error');
+                    adapter.log.debug("Fehler: " + err, 'error');
                 } else {    
                     //var tabelle;
                     let jsonWarning =[];
                         // Titel links, Inhalt rechts
-                        //log(result.rss.channel);
+                        adapter.log.debug(result.rss.channel);
                     
                     for (var i = 0; i <result.rss.channel.item.length; i++) {
                         let item =result.rss.channel.item[i];
@@ -154,12 +158,12 @@ function getData(){
                         //itemObj.guid = result.rss.channel.item[i].guid;
                         let link = result.rss.channel.item[i].link;
                         itemObj.title = result.rss.channel.item[i].title;
-                        httpGet(link, function (error, response) {
-                            //console.log(response.data)
+                        https.get(link, function (error, response) {
+                            adapter.log.debug(response.data)
                             let item = response.data;
                             //const html2json = require('html2json').html2json;
                             //let itemJson = html2json(item);
-                            //console.log(JSON.stringify(itemJson.child[0].child[3].child[1].child))
+                            adapter.log.debug(JSON.stringify(itemJson.child[0].child[3].child[1].child))
                             // html
                             
                             let pos = item.indexOf('lmw-section__head')
@@ -225,7 +229,7 @@ function getData(){
                             first = item.indexOf('lmw-section-toggle-head-ID-2',end)
                             first = item.indexOf('<ul',first)+3
                             end = item.indexOf('</ul>',first+3)
-                            //log(item.substring(first, end))
+                            adapter.log.debug(item.substring(first, end))
                             let ul = item.substring(first, end)
                             /*
                             ul = ul.replace('<li class="lmw-list__item">','')
@@ -243,7 +247,7 @@ function getData(){
                             }
                             itemObj.listCountries = result;
                             //const textContent = result.join(', ');
-                            //console.log(textContent);
+                            adapter.log.debug(textContent);
                             /*
                             first = item.indexOf('lmw-description-list__description',end)
                             first = item.indexOf('<p>',first)+3
@@ -276,7 +280,7 @@ function getData(){
                 }
             });
         } else  {
-            log(error, 'error');
+            adapter.log.debug(error, 'error');
         }
     });   // Ende request 
 }
