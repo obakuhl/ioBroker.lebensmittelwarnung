@@ -70,11 +70,11 @@ function main() {
 	    setTimeout(function(){
 	        getData()
 	    },3000);
-	}*/
+	}
 
-	schedule('*/30 * * * *', () => {
+	schedule('* /30 * * * *', () => { // * und / ohne leerzeichen
 	    getData();
-	});
+	});*/
 	
 	on({id: selectedCountryDP, change: "any"}, function (obj) {
 	    let value = obj.state.val;
