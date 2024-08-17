@@ -132,6 +132,7 @@ function setHTML(data){
 async function getData(){
     //let parseString = require('xml2js').parseString;
 	adapter.log.debug(`wir sind in getData`);
+	adapter.log.debug(`URL is: ${foodWarningRSS}`);
     let jsonCount = 0;    
     https.get(foodWarningRSS, function (error, response) {
         if (!error && response.statusCode == 200) {
@@ -142,15 +143,15 @@ async function getData(){
                 mergeAttrs: true
             },
             function (err, result) {
-                adapter.log.debug(`${JSON.stringify(result, null, 2)}`);
+                adapter.log.debug(`stringify result is: ${JSON.stringify(result, null, 2)}`);
 				
                 if (err) {
-                    adapter.log.debug("Fehler: " + err, 'error');
+                    adapter.log.debug(`Fehler: ${err}, ${error}`);
                 } else {    
                     //var tabelle;
                     let jsonWarning =[];
                         // Titel links, Inhalt rechts
-                        adapter.log.debug(`${result.rss.channel}`);
+                        adapter.log.debug(`result.rss.channel is: ${result.rss.channel}`);
                     
                     for (var i = 0; i <result.rss.channel.item.length; i++) {
                         let item =result.rss.channel.item[i];
