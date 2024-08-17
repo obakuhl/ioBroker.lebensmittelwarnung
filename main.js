@@ -64,13 +64,13 @@ function main() {
 	
 	getData();
 
-	if(existsState(foodJSONDP)){
+	/*if(existsState(foodJSONDP)){
 	    getData()
 	} else{
 	    setTimeout(function(){
 	        getData()
 	    },3000);
-	}
+	}*/
 
 	schedule('*/30 * * * *', () => {
 	    getData();
