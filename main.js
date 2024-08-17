@@ -52,17 +52,18 @@ function startAdapter(options) {
 function main() {
 	adapter.setState('info.connection', false, true);
 	
-	/*(async() => {
+	(async() => {
         try {
 			adapter.log.debug(`hello`);		
-			await handleRequest();
+			//await handleRequest();
+			await getData();
         } catch (err) {
 			adapter.log.info(`Could not process request: ${err}`);
 			return;
             }
-	})();*/
+	})();
 	
-	getData();
+
 
 	/*if(existsState(foodJSONDP)){
 	    getData()
@@ -128,7 +129,7 @@ function setHTML(data){
     setState(foodHTMLDP,html)
 }
 
-function getData(){
+async function getData(){
     //let parseString = require('xml2js').parseString;
     let jsonCount = 0;    
     https.get(foodWarningRSS, function (error, response) {
