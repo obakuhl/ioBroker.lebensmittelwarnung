@@ -131,10 +131,11 @@ function setHTML(data){
 
 async function getData(){
     //let parseString = require('xml2js').parseString;
+	adapter.log.debug(`wir sind in getData`);
     let jsonCount = 0;    
     https.get(foodWarningRSS, function (error, response) {
         if (!error && response.statusCode == 200) {
-			adapter.log.debug(`wir sind in getData`);
+			
 			
             parseString(response.data, {
                 explicitArray: false,
