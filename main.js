@@ -287,9 +287,9 @@ function getData(){
 
 async function handleRequest() {
     // create states
-    if (!objectsInitialized[warnings]) {
+    if (!objectsInitialized) {
 	await createObjects();
-	objectsInitialized[warnings] = true;
+	objectsInitialized = true;
     }
 }
 
