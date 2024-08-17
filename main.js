@@ -133,21 +133,22 @@ function getData(){
     let jsonCount = 0;    
     https.get(foodWarningRSS, function (error, response) {
         if (!error && response.statusCode == 200) {
-    
+			adapter.log.debug(`wir sind in getData`);
+			
             parseString(response.data, {
                 explicitArray: false,
                 mergeAttrs: true
             },
             function (err, result) {
-                adapter.log.debug(JSON.stringify(result, null, 2));
-
+                adapter.log.debug(`${JSON.stringify(result, null, 2)}`);
+				
                 if (err) {
                     adapter.log.debug("Fehler: " + err, 'error');
                 } else {    
                     //var tabelle;
                     let jsonWarning =[];
                         // Titel links, Inhalt rechts
-                        adapter.log.debug(result.rss.channel);
+                        adapter.log.debug(`${result.rss.channel}`);
                     
                     for (var i = 0; i <result.rss.channel.item.length; i++) {
                         let item =result.rss.channel.item[i];
