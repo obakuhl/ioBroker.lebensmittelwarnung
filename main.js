@@ -52,7 +52,7 @@ function startAdapter(options) {
 function main() {
 	adapter.setState('info.connection', false, true);
 	
-	(async() => {
+	/*(async() => {
         try {
 			adapter.log.debug(`hello`);		
 			await handleRequest();
@@ -60,7 +60,7 @@ function main() {
 			adapter.log.info(`Could not process request: ${err}`);
 			return;
             }
-	})();
+	})();*/
 	
 	getData();
 
